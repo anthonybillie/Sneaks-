@@ -1,5 +1,5 @@
-# Sneaks-
-#Sneaker application for managing sneaker prices and releases from multiple resell sites. 
+###Sneaks-
+###Sneaker application for managing sneaker prices and releases from multiple resell sites. 
 
 
 Find My Sneaks
@@ -23,4 +23,4 @@ Data Model:
 -	User Login (User Name and Password)
 -	Phone Number
 -	Sneaker Preferences (My List)
-![image](https://user-images.githubusercontent.com/78389002/165880371-792f0f82-a64f-4df0-8b5b-19b1bc4f5139.png)
+
