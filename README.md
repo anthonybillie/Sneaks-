@@ -19,4 +19,18 @@ I will be building the Find my Sneaks App to track sneaker prices and releases. 
 -	User Login (User Name and Password)
 -	Phone Number
 -	Sneaker Preferences (My List)
+## Schedule:
+### Week 1
+-
+-
+### Week 2
+-
+-
+### Week 3
+-
+-
+### Week 4
+-
+-
+
 
