@@ -21,14 +21,14 @@ I will be building the Find my Sneaks App to track sneaker prices and releases. 
 -	Sneaker Preferences (My List)
 ## Schedule:
 ### Week 1
--
--
+-Layout and Design created
+-Brands and Sneaks to Track
 ### Week 2
--
--
+-Pull API for (trending, by brand, by search)
+-API to include pictures and links to different sites
 ### Week 3
--
--
+-login information for tracking
+-notifications for price drops. possibly sms notifications. 
 ### Week 4
 -
 -
