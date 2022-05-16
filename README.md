@@ -16,12 +16,12 @@ I will be building the Find my Sneaks App to track sneaker prices and releases. 
 -	SMS notifications
 -	Login
 ## Data Model:
--	User Login (User Name and Password)<br />
+-	User Login (User Name and Password)
 -	Phone Number
 -	Sneaker Preferences (My List)
 ## Schedule:
 ### Week 1
--Layout and Design created
+-Layout and Design created ----
 -Brands and Sneaks to Track
 ### Week 2
 -Pull API for (trending, by brand, by search)
