@@ -10,3 +10,7 @@ import requests as fetch
 def index(request):
 
     return render(request, 'sneakers_app/index.html')
+
+
+def nike(request):
+    return render(request, 'sneakers_app/nike.html')

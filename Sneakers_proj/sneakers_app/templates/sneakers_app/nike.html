@@ -73,10 +73,7 @@
                   data-bs-parent="#menu"
                 >
                   <li class="w-100">
-                    <a
-                      href="{% url 'sneakers_app:nike' %}"
-                      class="nav-link px-0"
-                    >
+                    <a href="#" class="nav-link px-0">
                       <span
                         class="d-sm-inline"
                         style="font-family: 'Koulen', cursive"
@@ -195,23 +192,23 @@
         <div class="col py-3 text-center">
           <div id="app">
             <div
-              v-for="shoe in shoes"
+              v-for="brand in brands"
               class="card d-inline-block"
               style="width: 18rem"
             >
               <img
-                :src="[[shoe.image.thumbnail]]"
+                :src="[[brand.image.thumbnail]]"
                 class="card-img-top"
-                :alt="[[shoe.silhouette]]"
+                :alt="[[brand.silhouette]]"
               />
 
               <div class="card-body">
-                <h5 class="card-title">[[shoe.name]]</h5>
-                <p class="card-text">[[shoe.brand]]</p>
-                <p class="card-text">Release Date: [[shoe.releaseDate]]</p>
-                <p class="card-text">Retail Price: $[[shoe.retailPrice]]</p>
-                <a :href="[[shoe.links.flightClub]]">Flight Club</a><br />
-                <a :href="[[shoe.links.goat]]">GOAT</a>
+                <h5 class="card-title">[[brand.name]]</h5>
+                <p class="card-text">[[brand.brand]]</p>
+                <p class="card-text">Release Date: [[brand.releaseDate]]</p>
+                <p class="card-text">Retail Price: $[[brand.retailPrice]]</p>
+                <a :href="[[brand.links.flightClub]]">Flight Club</a><br />
+                <a :href="[[brand.links.goat]]">GOAT</a>
               </div>
             </div>
 
@@ -226,16 +223,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
-      let app = new Vue({
+      new Vue({
         el: "#app",
         delimiters: ["[[", "]]"],
         data: {
-          shoes: [],
+          brands: [],
         },
         methods: {
-          homeSneaks() {
+          brandSneaks() {
             fetch(
-              "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100",
+              "https://the-sneaker-database.p.rapidapi.com/search?limit=100&query=nike",
               {
                 method: "GET",
                 headers: {
@@ -247,12 +244,14 @@
             )
               .then((response) => response.json())
               .then((data) => {
-                this.shoes = data.results;
-              });
+                console.log(data);
+                this.brands = data.results;
+              })
+              .catch((err) => console.error(err));
           },
         },
         mounted: function () {
-          this.homeSneaks();
+          this.brandSneaks();
         },
       });
     </script>
