@@ -16,205 +16,202 @@
       rel="stylesheet"
     />
     <!-- Link to CSS File -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'sneakers_app/css/style.css' %}"
+    />
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'sneakers_app/images/Sneaks.jpg' %}"
+    />
 
     <title>Sneaks</title>
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-          <div
-            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
-          >
-            <a
-              href="/"
-              class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-            >
-              <span
-                class="fs-5 d-none d-sm-inline"
-                style="font-family: 'Koulen', cursive"
-                >Menu</span
-              >
-            </a>
-            <ul
-              class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-              id="menu"
-            >
-              <li class="nav-item">
-                <a
-                  href="{% url 'sneakers_app:index' %}"
-                  class="nav-link align-middle px-0"
-                >
-                  <i class="fs-4 bi-house"></i>
-                  <span
-                    class="ms-1 d-sm-inline text-white"
-                    style="font-family: 'Koulen', cursive"
-                    >Home</span
-                  >
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#submenu1"
-                  data-bs-toggle="collapse"
-                  class="nav-link px-0 align-middle"
-                >
-                  <i class="fs-4 bi-speedometer2"></i>
-                  <span
-                    class="ms-1 d-sm-inline text-white"
-                    style="font-family: 'Koulen', cursive"
-                    >Brands</span
-                  >
-                </a>
-                <ul
-                  class="collapse show nav flex-column ms-1"
-                  id="submenu1"
-                  data-bs-parent="#menu"
-                >
-                  <li class="w-100">
-                    <a
-                      href="{% url 'sneakers_app:nike' %}"
-                      class="nav-link px-0"
-                    >
-                      <span
-                        class="d-sm-inline"
-                        style="font-family: 'Koulen', cursive"
-                        >Nike</span
-                      >
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link px-0">
-                      <span
-                        class="d-sm-inline"
-                        style="font-family: 'Koulen', cursive"
-                        >Jordan</span
-                      >
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link px-0">
-                      <span
-                        class="d-sm-inline"
-                        style="font-family: 'Koulen', cursive"
-                        >Addidas</span
-                      >
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link px-0">
-                      <span
-                        class="d-sm-inline"
-                        style="font-family: 'Koulen', cursive"
-                        >New Balance</span
-                      >
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link px-0">
-                      <span
-                        class="d-sm-inline"
-                        style="font-family: 'Koulen', cursive"
-                        >Converse</span
-                      >
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#" class="nav-link px-0 align-middle">
-                  <i class="fs-4 bi-table"></i>
-                  <span
-                    class="ms-1 d-sm-inline text-white"
-                    style="font-family: 'Koulen', cursive"
-                    >Trending</span
-                  ></a
-                >
-              </li>
-              <li>
-                <a
-                  href="#submenu2"
-                  data-bs-toggle="collapse"
-                  class="nav-link px-0 align-middle"
-                >
-                  <i class="fs-4 bi-bootstrap"></i>
-                  <span
-                    class="ms-1 d-sm-inline text-white"
-                    style="font-family: 'Koulen', cursive"
-                    >Upcoming Releases</span
-                  ></a
-                >
-              </li>
-
-              <li>
-                <a href="#" class="nav-link px-0 align-middle">
-                  <i class="fs-4 bi-people"></i>
-                  <span
-                    class="ms-1 d-sm-inline text-white"
-                    style="font-family: 'Koulen', cursive"
-                    >Search</span
-                  >
-                </a>
-              </li>
-            </ul>
-            <hr />
-            <div class="dropdown pb-4">
-              <a
-                href="#"
-                class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                id="dropdownUser1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://github.com/mdo.png"
-                  alt="hugenerd"
-                  width="30"
-                  height="30"
-                  class="rounded-circle"
-                />
-                <span
-                  class="d-none d-sm-inline mx-1"
-                  style="font-family: 'Koulen', cursive"
-                  >Login</span
-                >
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col py-3 text-center">
-          <div id="app">
+    <div id="app">
+      <div class="container-fluid">
+        <div class="row flex-nowrap">
+          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div
-              v-for="shoe in shoes"
-              class="card d-inline-block"
-              style="width: 18rem"
+              class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
             >
-              <img
-                :src="[[shoe.image.thumbnail]]"
-                class="card-img-top"
-                :alt="[[shoe.silhouette]]"
-              />
+              <ul
+                class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                id="menu"
+              >
+                <li class="nav-item">
+                  <a
+                    href="{% url 'sneakers_app:index' %}"
+                    class="nav-link align-middle px-0"
+                  >
+                    <i class="fs-4 bi-house"></i>
+                    <span
+                      id="home"
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
+                      >Home</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#submenu1"
+                    data-bs-toggle="collapse"
+                    class="nav-link px-0 align-middle"
+                  >
+                    <i class="fs-4 bi-speedometer2"></i>
+                    <span
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
+                      >Brands</span
+                    >
+                  </a>
+                  <ul
+                    class="collapse show nav flex-column ms-1"
+                    id="submenu1"
+                    data-bs-parent="#menu"
+                    v-for="brand in brands"
+                  >
+                    <li class="w-100">
+                      <a
+                        v-on:click="brandSneaks(brand)"
+                        href="#"
+                        class="nav-link px-0"
+                      >
+                        <span
+                          class="d-sm-inline"
+                          style="font-family: 'Koulen', cursive"
+                          >[[brand]]</span
+                        >
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" class="nav-link px-0 align-middle">
+                    <i class="fs-4 bi-table"></i>
+                    <span
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
+                      >Trending</span
+                    ></a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#submenu2"
+                    data-bs-toggle="collapse"
+                    class="nav-link px-0 align-middle"
+                  >
+                    <i class="fs-4 bi-bootstrap"></i>
+                    <span
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
+                      >Upcoming Releases</span
+                    ></a
+                  >
+                </li>
 
-              <div class="card-body">
-                <h5 class="card-title">[[shoe.name]]</h5>
-                <p class="card-text">[[shoe.brand]]</p>
-                <p class="card-text">Release Date: [[shoe.releaseDate]]</p>
-                <p class="card-text">Retail Price: $[[shoe.retailPrice]]</p>
-                <a :href="[[shoe.links.flightClub]]">Flight Club</a><br />
-                <a :href="[[shoe.links.goat]]">GOAT</a>
+                <li>
+                  <a href="#" class="nav-link px-0 align-middle">
+                    <i class="fs-4 bi-people"></i>
+                    <span
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
+                      >Search</span
+                    >
+                  </a>
+                </li>
+              </ul>
+              <hr />
+              <div class="dropdown pb-4">
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                  id="dropdownUser1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="{% static 'sneakers_app/images/Sneaks.jpg' %}"
+                    alt="hugenerd"
+                    width="30"
+                    height="30"
+                    class="rounded-circle"
+                  />
+                  <span
+                    class="d-none d-sm-inline mx-1"
+                    style="font-family: 'Koulen', cursive"
+                    >Login</span
+                  >
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
               </div>
             </div>
+          </div>
+          <div class="col text-center">
+            <!-- <div id="app" > -->
+            <nav
+              class="navbar navbar-dark bg-dark fixed-top navbar-custom"
+              style="margin-left: 250px"
+            >
+              <div class="container">
+                <li
+                  class="navbar-nav text-white mx-auto display-3"
+                  style="list-style: none; font-family: 'Koulen', cursive"
+                >
+                  [[header]]
+                </li>
+                <a href="" class="navbar-brand">
+                  <img
+                    class="img-thumbnail img-fluid rounded-circle"
+                    style="max-width: 75px"
+                    src="{% static 'sneakers_app/images/Sneaks.jpg' %}"
+                    alt="brand image"
+                  />
+                </a>
+              </div>
+            </nav>
+            <section>
+              <div
+                v-for="shoe in shoes"
+                class="card d-inline-block"
+                style="width: 18rem"
+              >
+                <img
+                  :src="[[shoe.image.thumbnail]]"
+                  class="card-img-top"
+                  :alt="[[shoe.silhouette]]"
+                />
 
+                <div class="card-body">
+                  <h5 class="card-title">[[shoe.name]]</h5>
+                  <p class="card-text">[[shoe.brand]]</p>
+                  <p class="card-text">Release Date: [[shoe.releaseDate]]</p>
+                  <p class="card-text">Retail Price: $[[shoe.retailPrice]]</p>
+                  <a :href="[[shoe.links.flightClub]]" target="_blank"
+                    >Flight Club</a
+                  ><br />
+                  <a :href="[[shoe.links.goat]]" target="_blank">GOAT</a>
+                </div>
+              </div>
+            </section>
+
+            <div class="my-5">
+              <button class="btn btn-primary">
+                <a class="text-white text-decoration-none" href="#home">TOP</a>
+              </button>
+            </div>
             <!-- 
   
             <!-- END OF CONTENT AREA -->
@@ -231,6 +228,7 @@
         delimiters: ["[[", "]]"],
         data: {
           shoes: [],
+          header: "",
         },
         methods: {
           homeSneaks() {
@@ -248,11 +246,52 @@
               .then((response) => response.json())
               .then((data) => {
                 this.shoes = data.results;
+                this.header = "Home Sneaks";
               });
+          },
+          brandSneaks(brand) {
+            fetch(
+              `https://the-sneaker-database.p.rapidapi.com/search?limit=100&query=${brand}`,
+              {
+                method: "GET",
+                headers: {
+                  "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
+                  "X-RapidAPI-Key":
+                    "1917ad3211msh4712239feeda776p1e22c8jsndc955214cb00",
+                },
+              }
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+                this.shoes = data.results;
+              })
+              .catch((err) => console.error(err));
+          }, //END OF BRAND SNEAKS
+
+          allBrands() {
+            fetch("https://the-sneaker-database.p.rapidapi.com/brands", {
+              method: "GET",
+              headers: {
+                "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
+                "X-RapidAPI-Key":
+                  "1917ad3211msh4712239feeda776p1e22c8jsndc955214cb00",
+              },
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+                this.brands = data.results;
+              })
+              .catch((err) => console.error(err));
+
+            // END OF ALL BRANDS
           },
         },
         mounted: function () {
           this.homeSneaks();
+          this.brandSneaks();
+          this.allBrands();
         },
       });
     </script>

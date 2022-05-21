@@ -66,6 +66,7 @@ TEMPLATES = [
             ],
         },
     },
+
 ]
 
 WSGI_APPLICATION = 'Sneakers_proj.wsgi.application'
