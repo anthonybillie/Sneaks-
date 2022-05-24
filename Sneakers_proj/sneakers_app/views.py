@@ -9,12 +9,8 @@ from django.template import loader
 
 
 def index(request):
-    template = loader.get_template('sneakers_app/index.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
-
-    # return render(request, 'sneakers_app/index.html')
+    return render(request, 'sneakers_app/index.html')
 
 
-def nike(request):
-    return render(request, 'sneakers_app/nike.html')
+def login(request):
+    return render(request, 'sneakers_app/login.html')

@@ -21,12 +21,17 @@
       type="text/css"
       href="{% static 'sneakers_app/css/style.css' %}"
     />
+    <!-- Link to JS File -->
+    <script defer src="{% static 'sneakers_app/js/app.js' %}"></script>
     <!-- favicon -->
     <link
       rel="icon"
       type="image/x-icon"
       href="{% static 'sneakers_app/images/Sneaks.jpg' %}"
     />
+    <!-- VUE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
     <title>Sneaks</title>
   </head>
@@ -70,7 +75,7 @@
                     >
                   </a>
                   <ul
-                    class="collapse show nav flex-column ms-1"
+                    class="collapse nav flex-column ms-1"
                     id="submenu1"
                     data-bs-parent="#menu"
                     v-for="brand in brands"
@@ -90,30 +95,6 @@
                     </li>
                   </ul>
                 </li>
-                <li>
-                  <a href="#" class="nav-link px-0 align-middle">
-                    <i class="fs-4 bi-table"></i>
-                    <span
-                      class="ms-1 d-sm-inline text-white display-6"
-                      style="font-family: 'Koulen', cursive"
-                      >Trending</span
-                    ></a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#submenu2"
-                    data-bs-toggle="collapse"
-                    class="nav-link px-0 align-middle"
-                  >
-                    <i class="fs-4 bi-bootstrap"></i>
-                    <span
-                      class="ms-1 d-sm-inline text-white display-6"
-                      style="font-family: 'Koulen', cursive"
-                      >Upcoming Releases</span
-                    ></a
-                  >
-                </li>
 
                 <li>
                   <a href="#" class="nav-link px-0 align-middle">
@@ -124,6 +105,19 @@
                       >Search</span
                     >
                   </a>
+
+                  <input
+                    class="form-control-sm"
+                    type="text"
+                    v-model="search"
+                    value="search"
+                    placeholder="Search"
+                    @keyup.enter="searchSneaks(search)"
+                  />
+                  <br />
+                  <button @click="searchSneaks(search)" class="btn btn-warning">
+                    Search
+                  </button>
                 </li>
               </ul>
               <hr />
@@ -149,7 +143,14 @@
                   >
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li>
+                    <a
+                      v-on:click="mainPage=false"
+                      class="dropdown-item"
+                      href="#"
+                      >Login</a
+                    >
+                  </li>
                   <li><a class="dropdown-item" href="#">Profile</a></li>
                   <li>
                     <hr class="dropdown-divider" />
@@ -163,7 +164,7 @@
             <!-- <div id="app" > -->
             <nav
               class="navbar navbar-dark bg-dark fixed-top navbar-custom"
-              style="margin-left: 250px"
+              style="margin-left: 275px"
             >
               <div class="container">
                 <li
@@ -182,16 +183,25 @@
                 </a>
               </div>
             </nav>
-            <section>
+
+            <section v-if="mainPage" style="margin-top: 100px">
+              <!-- SHOE DISPLAY -->
               <div
                 v-for="shoe in shoes"
                 class="card d-inline-block"
                 style="width: 18rem"
               >
                 <img
+                  v-if="shoe.image.thumbnail"
                   :src="[[shoe.image.thumbnail]]"
                   class="card-img-top"
                   :alt="[[shoe.silhouette]]"
+                />
+                <img
+                  v-else
+                  src="{% static 'sneakers_app/images/INA.jpeg' %}"
+                  class="card-img-top"
+                  alt="image not available"
                 />
 
                 <div class="card-body">
@@ -205,6 +215,62 @@
                   <a :href="[[shoe.links.goat]]" target="_blank">GOAT</a>
                 </div>
               </div>
+              <!-- END OF SHOE DISPLAY -->
+            </section>
+            <section v-else style="margin-top: 100px">
+              <div class="container">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="row text-center">
+                      <h1 class="mb-4">Sign Up</h1>
+                    </div>
+                    <div class="row">
+                      <form>
+                        <div class="row">
+                          <div class="col">
+                            <input type="text" class="form-control" placeholder="First name">
+                          </div>
+                          <div class="col">
+                            <input type="text" class="form-control" placeholder="Last name">
+                          </div>
+                        </div>
+                        <div class="row mt-5 mb-3">
+                          <div class="col">
+                            <input type="text" class="form-control" placeholder="Email Address">
+                          </div>
+                          <div class="col">
+                            <input type="text" class="form-control" placeholder="Password">
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Sign Up</button>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- SIDE 2   -->
+                  
+                  <div class="col-6">
+                    <div class="row">
+                      <h1 class="text-center">Login</h1>
+                    
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email Address:</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          
+          </div>
+          <div class="form-group mb-3">
+            <label for="exampleInputPassword1">Password:</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <button type="submit" class="btn btn-primary btn-small mt-4">Login</button>
+          </div>
+        </form>
+                    </div>
+                  </div>
+                
+         <img 
+         class=" mx-auto rounded-circle mt-5"
+         style="max-width: 50%;"
+         src="{% static 'sneakers_app/images/Sneaks.jpg' %}" alt="find my sneaks logo">
+         
             </section>
 
             <div class="my-5">
@@ -212,6 +278,7 @@
                 <a class="text-white text-decoration-none" href="#home">TOP</a>
               </button>
             </div>
+
             <!-- 
   
             <!-- END OF CONTENT AREA -->
@@ -219,82 +286,6 @@
         </div>
       </div>
     </div>
-    <!-- VUE -->
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script>
-      let app = new Vue({
-        el: "#app",
-        delimiters: ["[[", "]]"],
-        data: {
-          shoes: [],
-          header: "",
-        },
-        methods: {
-          homeSneaks() {
-            fetch(
-              "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100",
-              {
-                method: "GET",
-                headers: {
-                  "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
-                  "X-RapidAPI-Key":
-                    "1917ad3211msh4712239feeda776p1e22c8jsndc955214cb00",
-                },
-              }
-            )
-              .then((response) => response.json())
-              .then((data) => {
-                this.shoes = data.results;
-                this.header = "Home Sneaks";
-              });
-          },
-          brandSneaks(brand) {
-            fetch(
-              `https://the-sneaker-database.p.rapidapi.com/search?limit=100&query=${brand}`,
-              {
-                method: "GET",
-                headers: {
-                  "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
-                  "X-RapidAPI-Key":
-                    "1917ad3211msh4712239feeda776p1e22c8jsndc955214cb00",
-                },
-              }
-            )
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data);
-                this.shoes = data.results;
-              })
-              .catch((err) => console.error(err));
-          }, //END OF BRAND SNEAKS
-
-          allBrands() {
-            fetch("https://the-sneaker-database.p.rapidapi.com/brands", {
-              method: "GET",
-              headers: {
-                "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
-                "X-RapidAPI-Key":
-                  "1917ad3211msh4712239feeda776p1e22c8jsndc955214cb00",
-              },
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data);
-                this.brands = data.results;
-              })
-              .catch((err) => console.error(err));
-
-            // END OF ALL BRANDS
-          },
-        },
-        mounted: function () {
-          this.homeSneaks();
-          this.brandSneaks();
-          this.allBrands();
-        },
-      });
-    </script>
 
     <!-- Bootstrap JavaScript -->
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
