@@ -10,7 +10,3 @@ from django.template import loader
 
 def index(request):
     return render(request, 'sneakers_app/index.html')
-
-
-def login(request):
-    return render(request, 'sneakers_app/login.html')
