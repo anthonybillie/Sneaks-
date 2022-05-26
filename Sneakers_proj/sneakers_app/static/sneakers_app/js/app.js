@@ -6,8 +6,7 @@
           shoes: [],
           header: "Find My Sneaks",
           search: "",
-          brands: "",
-          
+          brands: "",     
         },
         methods: {
           homeSneaks() {
@@ -91,10 +90,8 @@
             // END OF ALL BRANDS
           },
           
-
-
         },
-        created: function () {
+        mounted: function () {
           this.homeSneaks();
           // this.brandSneaks();
           this.allBrands();
