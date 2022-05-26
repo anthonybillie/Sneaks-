@@ -7,7 +7,7 @@
           header: "Find My Sneaks",
           search: "",
           brands: "",
-          mainPage:'true',
+          
         },
         methods: {
           homeSneaks() {
@@ -29,7 +29,7 @@
               });
           },
           brandSneaks(brand) {
-            this.mainPage=true,
+           
             fetch(
               `https://the-sneaker-database.p.rapidapi.com/search?limit=100&query=${brand}`,
               {
@@ -49,7 +49,7 @@
               .catch((err) => console.error(err));
           }, //END OF BRAND SNEAKS
           searchSneaks(search) {
-            this.mainPage=true,
+            
             fetch(
               `https://the-sneaker-database.p.rapidapi.com/search?limit=50&query=${search}`,
               {
