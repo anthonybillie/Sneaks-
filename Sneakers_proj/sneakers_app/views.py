@@ -4,9 +4,62 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 import requests as fetch
 from django.template import loader
-
+from .forms import *
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 
 def index(request):
     return render(request, 'sneakers_app/index.html')
+
+
+def user_login(request):
+    if request.method == 'GET':
+        form2 = NewLoginForm()
+        return render(request, 'sneakers_app/login.html', {
+            'form2': form2
+        })
+
+    elif request.method == 'POST':
+        form2 = NewLoginForm(request.POST)
+        if form2.is_valid():
+            password = form2.cleaned_data['password']
+            user = authenticate(
+                request, username=form2.cleaned_data['username'], password=password)
+            if user is not None:
+                login(request, user)
+                return render(request, 'sneakers_app/profile.html')
+            else:
+                form2.add_error('username', 'Invalid Login')
+                return render(request, 'sneakers_app/login.html', {'form2': form2})
+
+
+def register(request):
+    if request.method == 'GET':
+        form = NewSignUpForm()
+        return render(request, 'sneakers_app/register.html', {
+            'form': form,
+        })
+    elif request.method == 'POST':
+        form = NewSignUpForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(
+                username=form.cleaned_data['username'],
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name'],
+                email=form.cleaned_data['email'],
+                password=form.cleaned_data['password'],
+            )
+    return render(request, 'sneakers_app/register.html')
+
+
+def profile(request):
+    return render(request, 'sneakers_app/profile.html')
+
+
+# logout function
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('login'))

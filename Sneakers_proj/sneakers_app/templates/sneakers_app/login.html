@@ -115,7 +115,7 @@
                     @keyup.enter="searchSneaks(search)"
                   />
                   <br />
-                  <button @click="searchSneaks(search)" class="btn btn-warning">
+                  <button  @click="searchSneaks(search)" class="btn btn-warning">
                     Search
                   </button>
                 </li>
@@ -147,9 +147,9 @@
                   <li>
                   <li>
                     <a
-                    
+                    href="{% url 'sneakers_app:user_login' %}"
                       class="dropdown-item"
-                      href="{% url 'sneakers_app:user_login' %}"
+                      
                       >Login</a
                     >
                   </li>
@@ -187,38 +187,17 @@
             </nav>
 
             <section  style="margin-top: 100px">
-              <!-- SHOE DISPLAY -->
-              <div
-                v-for="shoe in shoes"
-                class="card d-inline-block"
-                style="width: 18rem"
-              >
-                <img
-                  v-if="shoe.image.thumbnail"
-                  :src="[[shoe.image.thumbnail]]"
-                  class="card-img-top"
-                  :alt="[[shoe.silhouette]]"
-                />
-                <img
-                  v-else
-                  src="{% static 'sneakers_app/images/INA.jpeg' %}"
-                  class="card-img-top"
-                  alt="image not available"
-                />
+             <!-- REGISTER SECTION -->
+             <form action="" method="POST">
+              {% csrf_token %}
+              {{form2}}
+              <button type="submit" class="btn btn-primary">
+                submit
+              </button>
 
-                <div class="card-body">
-                  <h5 class="card-title">[[shoe.name]]</h5>
-                  <p class="card-text">[[shoe.brand]]</p>
-                  <p class="card-text">Release Date: [[shoe.releaseDate]]</p>
-                  <p class="card-text">Retail Price: $[[shoe.retailPrice]]</p>
-                  <a :href="[[shoe.links.flightClub]]" target="_blank"
-                    >Flight Club</a
-                  ><br />
-                  <a :href="[[shoe.links.goat]]" target="_blank">GOAT</a>
-                </div>
-              </div>
-              <!-- END OF SHOE DISPLAY -->
-            
+             </form>
+
+             
             <div class="my-5">
               <button class="btn btn-primary">
                 <a class="text-white text-decoration-none" href="#home">TOP</a>
