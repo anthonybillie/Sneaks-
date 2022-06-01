@@ -1,13 +1,257 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Koulen&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Link to CSS File -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'sneakers_app/css/style.css' %}"
+    />
+    <!-- Link to JS File -->
+    <script defer src="{% static 'sneakers_app/js/app.js' %}"></script>
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'sneakers_app/images/Sneaks.jpg' %}"
+    />
+    <!-- VUE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/4696bc222d.js" crossorigin="anonymous"></script>
+    <title>Sneaks</title>
   </head>
   <body>
-    <h1>HEY DUMMY</h1>
-    <h2>hello {{request.user}}</h2>
+    <div id="app">
+      <div class="container-fluid">
+        <div class="row flex-nowrap">
+          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div
+              class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
+            >
+              <ul
+                class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                id="menu"
+              >
+                <li class="nav-item">
+                  <a
+                    href="{% url 'sneakers_app:profile' %}"
+                    class="nav-link align-middle px-0"
+                  >
+                    <i class="fs-4 bi-house"></i>
+                    <span
+                      id="home"
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
+                      >Home</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#submenu1"
+                    data-bs-toggle="collapse"
+                    class="nav-link px-0 align-middle"
+                  >
+                    <i class="fs-4 bi-speedometer2"></i>
+                    <span
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
+                      >Brands</span
+                    >
+                  </a>
+                  <ul
+                    class="collapse nav flex-column ms-1"
+                    id="submenu1"
+                    data-bs-parent="#menu"
+                    v-for="brand in brands"
+                  >
+                    <li class="w-100">
+                      <a
+                        v-on:click="brandSneaks(brand)"
+                        href="#"
+                        class="nav-link px-0"
+                      >
+                        <span
+                          class="d-sm-inline"
+                          style="font-family: 'Koulen', cursive"
+                          >[[brand]]</span
+                        >
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#" class="nav-link px-0 align-middle">
+                    <i class="fs-4 bi-people"></i>
+                    <span
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
+                      >Favorites</span
+                    >
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="nav-link px-0 align-middle">
+                    <i class="fs-4 bi-people"></i>
+                    <span
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
+                      >Search</span
+                    >
+                  </a>
+                </li>
+
+                  <input
+                    class="form-control-sm"
+                    type="text"
+                    v-model="search"
+                    value="search"
+                    placeholder="Search"
+                    @keyup.enter="searchSneaks(search)"
+                  />
+                  <br />
+                  <button @click="searchSneaks(search)" class="btn btn-warning">
+                    Search
+                  </button>
+                </li>
+              </ul>
+              <hr />
+              <div class="dropdown pb-4">
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                  id="dropdownUser1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="{% static 'sneakers_app/images/Sneaks.jpg' %}"
+                    alt="hugenerd"
+                    width="30"
+                    height="30"
+                    class="rounded-circle"
+                  />
+                  <span
+                    class="d-none d-sm-inline mx-1"
+                    style="font-family: 'Koulen', cursive"
+                    >{{request.user}}</span
+                  >
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                  <li><a class="dropdown-item" href="#" >Profile</a></li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li><a class="dropdown-item" href="{%url 'sneakers_app:logout'%}">Sign out</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col text-center">
+            <!-- <div id="app" > -->
+            <nav
+              class="navbar navbar-dark bg-dark fixed-top navbar-custom"
+              style="margin-left: 275px"
+            >
+              <div class="container">
+                <li
+                  class="navbar-nav text-white mx-auto display-3"
+                  style="list-style: none; font-family: 'Koulen', cursive"
+                >
+                  [[header]]
+                </li>
+                <a href="" class="navbar-brand">
+                  <img
+                    class="img-thumbnail img-fluid rounded-circle"
+                    style="max-width: 75px"
+                    src="{% static 'sneakers_app/images/Sneaks.jpg' %}"
+                    alt="brand image"
+                  />
+                </a>
+              </div>
+            </nav>
+            <template>
+             
+            
+            <section style="margin-top: 100px">
+              <!-- SHOE DISPLAY -->
+              
+              <div
+                v-for="shoe in shoes"
+                class="card d-inline-block"
+                style="width: 18rem"
+              >
+                <img
+                  v-if="shoe.image.thumbnail"
+                  :src="[[shoe.image.thumbnail]]"
+                  class="card-img-top"
+                  :alt="[[shoe.silhouette]]"
+                />
+                <img
+                  v-else
+                  src="{% static 'sneakers_app/images/INA.jpeg' %}"
+                  class="card-img-top"
+                  alt="image not available"
+                />
+
+                <div class="card-body">
+                  <h5 class="card-title">[[shoe.name]]</h5>
+                  <p class="card-text">[[shoe.brand]]</p>
+                  <p class="card-text">Release Date: [[shoe.releaseDate]]</p>
+                  <p class="card-text">Retail Price: $[[shoe.retailPrice]]</p>
+                  <a :href="[[shoe.links.flightClub]]" target="_blank"
+                    >Flight Club</a
+                  ><br />
+                  <a :href="[[shoe.links.goat]]" target="_blank">GOAT</a>
+                  <br>
+                  <a href=""><i class="fa-solid fa-heart text"  style="color: red;"></i> Add Favorite</a>
+                </div>
+              </div>
+
+              </section>
+            </template>
+
+
+              <!-- <template v-else>
+              <section style="margin-top: 100px">
+                heyy
+              </section>
+            </template> -->
+              <!-- END OF SHOE DISPLAY -->
+            
+            <div class="my-5">
+              <button class="btn btn-primary">
+                <a class="text-white text-decoration-none" href="#home">TOP</a>
+              </button>
+            </div>
+
+            <!-- 
+  
+            <!-- END OF CONTENT AREA -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

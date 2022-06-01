@@ -105,6 +105,7 @@
                       >Search</span
                     >
                   </a>
+                  </li>
 
                   <input
                     class="form-control-sm"
@@ -162,7 +163,7 @@
               </div>
             </div>
           </div>
-          <div class="col text-center">
+          <div>
             <!-- <div id="app" > -->
             <nav
               class="navbar navbar-dark bg-dark fixed-top navbar-custom"
@@ -188,23 +189,23 @@
 
             <section  style="margin-top: 100px">
              <!-- REGISTER SECTION -->
+             <div class="container">
+             <div class="shadow bg-body rounded col-6 p-5"
+             style="background-color: gray ;">
 
+          <h1>Register</h1>
+          <br>
              <form action="" method="POST">
               {% csrf_token %}
-              {{form}}
+              {{form.as_p}}
               <button type="submit" class="btn btn-primary">
                 submit
               </button>
-
              </form>
-          
            
-            
-            <div class="my-5">
-              <button class="btn btn-primary">
-                <a class="text-white text-decoration-none" href="#home">TOP</a>
-              </button>
             </div>
+          </div>
+          
 
             <!-- 
   

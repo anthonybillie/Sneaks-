@@ -3,11 +3,12 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 import requests as fetch
-from django.template import loader
+from .models import *
 from .forms import *
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect
 # Create your views here.
 
 
@@ -30,7 +31,7 @@ def user_login(request):
                 request, username=form2.cleaned_data['username'], password=password)
             if user is not None:
                 login(request, user)
-                return render(request, 'sneakers_app/profile.html')
+                return HttpResponseRedirect(reverse('sneakers_app:profile'))
             else:
                 form2.add_error('username', 'Invalid Login')
                 return render(request, 'sneakers_app/login.html', {'form2': form2})
@@ -52,14 +53,14 @@ def register(request):
                 email=form.cleaned_data['email'],
                 password=form.cleaned_data['password'],
             )
-    return render(request, 'sneakers_app/register.html')
+        return HttpResponseRedirect(reverse('sneakers_app:user_login'))
 
 
 def profile(request):
     return render(request, 'sneakers_app/profile.html')
 
 
-# logout function
+# # logout function
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('login'))
+    return HttpResponseRedirect(reverse('sneakers_app:user_login'))
