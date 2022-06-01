@@ -6,12 +6,13 @@
           shoes: [],
           header: "Find My Sneaks",
           search: "",
-          brands: "",     
+          brands: "",
+          profile: true,    
         },
         methods: {
           homeSneaks() {
             fetch(
-              "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100&sort=retailPrice:desc",
+                "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100&sort=releaseYear:asc",
               {
                 method: "GET",
                 headers: {
@@ -24,11 +25,9 @@
               .then((response) => response.json())
               .then((data) => {
                 this.shoes = data.results;
-                // this.header = "Home Sneaks";
               });
           },
           brandSneaks(brand) {
-           
             fetch(
               `https://the-sneaker-database.p.rapidapi.com/search?limit=100&query=${brand}`,
               {
@@ -66,10 +65,6 @@
               })
               .catch((err) => console.error(err));
           },
-          clearSearch() {
-            this.search = "";
-          },
-
           //END OF search
 
           allBrands() {
@@ -89,12 +84,14 @@
 
             // END OF ALL BRANDS
           },
+          profileSwitch(){
+            this.profile = 'false'
+          },
           
         },
-        mounted: function () {
-          this.homeSneaks();
-          // this.brandSneaks();
-          this.allBrands();
+        created: function () {
+           this.homeSneaks();
+           this.allBrands();
         },
       });
    

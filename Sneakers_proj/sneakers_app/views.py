@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 import requests as fetch
-from django.template import loader
+from .models import *
 from .forms import *
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -53,7 +53,7 @@ def register(request):
                 email=form.cleaned_data['email'],
                 password=form.cleaned_data['password'],
             )
-    return render(request, 'sneakers_app/register.html')
+        return HttpResponseRedirect(reverse('sneakers_app:user_login'))
 
 
 def profile(request):

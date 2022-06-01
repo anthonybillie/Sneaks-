@@ -32,7 +32,8 @@
     <!-- VUE -->
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/4696bc222d.js" crossorigin="anonymous"></script>
     <title>Sneaks</title>
   </head>
   <body>
@@ -102,9 +103,21 @@
                     <span
                       class="ms-1 d-sm-inline text-white display-6"
                       style="font-family: 'Koulen', cursive"
+                      >Favorites</span
+                    >
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="nav-link px-0 align-middle">
+                    <i class="fs-4 bi-people"></i>
+                    <span
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
                       >Search</span
                     >
                   </a>
+                </li>
 
                   <input
                     class="form-control-sm"
@@ -143,7 +156,7 @@
                   >
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#" >Profile</a></li>
                   <li>
                     <hr class="dropdown-divider" />
                   </li>
@@ -175,8 +188,10 @@
                 </a>
               </div>
             </nav>
-
-            <section  style="margin-top: 100px">
+            <template>
+             
+            
+            <section style="margin-top: 100px">
               <!-- SHOE DISPLAY -->
               
               <div
@@ -206,8 +221,20 @@
                     >Flight Club</a
                   ><br />
                   <a :href="[[shoe.links.goat]]" target="_blank">GOAT</a>
+                  <br>
+                  <a href=""><i class="fa-solid fa-heart text"  style="color: red;"></i> Add Favorite</a>
                 </div>
               </div>
+
+              </section>
+            </template>
+
+
+              <!-- <template v-else>
+              <section style="margin-top: 100px">
+                heyy
+              </section>
+            </template> -->
               <!-- END OF SHOE DISPLAY -->
             
             <div class="my-5">
