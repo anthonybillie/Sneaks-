@@ -156,7 +156,9 @@
                   >
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                  <li><a class="dropdown-item" href="#" >Profile</a></li>
+                  <li><a 
+                    
+                    class="dropdown-item" href="#" >Profile</a></li>
                   <li>
                     <hr class="dropdown-divider" />
                   </li>
@@ -188,10 +190,8 @@
                 </a>
               </div>
             </nav>
-            <template>
-             
-            
-            <section style="margin-top: 100px">
+       
+            <section v-if="profile = true" style="margin-top: 100px">
               <!-- SHOE DISPLAY -->
               
               <div
@@ -227,14 +227,14 @@
               </div>
 
               </section>
-            </template>
+          
 
 
-              <!-- <template v-else>
-              <section style="margin-top: 100px">
+           
+              <section v-else style="margin-top: 100px">
                 heyy
               </section>
-            </template> -->
+          
               <!-- END OF SHOE DISPLAY -->
             
             <div class="my-5">

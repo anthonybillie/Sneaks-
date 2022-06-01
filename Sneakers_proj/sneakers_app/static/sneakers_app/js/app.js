@@ -85,7 +85,7 @@
             // END OF ALL BRANDS
           },
           profileSwitch(){
-            this.profile = 'false'
+            profile = true
           },
           
         },
