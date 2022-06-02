@@ -57,6 +57,7 @@ def register(request):
 
 
 def profile(request):
+
     return render(request, 'sneakers_app/profile.html')
 
 
