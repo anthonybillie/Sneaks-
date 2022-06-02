@@ -1,5 +1,5 @@
 
-   new Vue({
+var vm =   new Vue({
         el: "#app",
         delimiters: ["[[", "]]"],
         data: {
@@ -11,6 +11,7 @@
         },
         methods: {
           homeSneaks() {
+            this.profile = true
             fetch(
                 "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100&sort=releaseYear:asc",
               {
@@ -28,6 +29,7 @@
               });
           },
           brandSneaks(brand) {
+            this.profile = true
             fetch(
               `https://the-sneaker-database.p.rapidapi.com/search?limit=100&query=${brand}`,
               {
@@ -47,7 +49,7 @@
               .catch((err) => console.error(err));
           }, //END OF BRAND SNEAKS
           searchSneaks(search) {
-            
+            this.profile = true
             fetch(
               `https://the-sneaker-database.p.rapidapi.com/search?limit=50&query=${search}`,
               {
@@ -68,6 +70,7 @@
           //END OF search
 
           allBrands() {
+            this.profile = true
             fetch("https://the-sneaker-database.p.rapidapi.com/brands", {
               method: "GET",
               headers: {
@@ -85,7 +88,9 @@
             // END OF ALL BRANDS
           },
           profileSwitch(){
-            profile = true
+            console.log('profile switch', this.profile)
+            this.profile = false
+            console.log('profile switch', this.profile)
           },
           
         },

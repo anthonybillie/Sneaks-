@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class favorite(models.Model):
-    favorite = models.IntegerField(default=1)
+    apiID = models.CharField(max_length=40)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='fav')
 
