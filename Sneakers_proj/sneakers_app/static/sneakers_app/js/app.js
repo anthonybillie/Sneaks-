@@ -13,7 +13,25 @@ var vm =   new Vue({
           homeSneaks() {
             this.profile = true
             fetch(
-                "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100&sort=releaseYear:asc",
+                "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=20&page=2",
+              {
+                method: "GET",
+                headers: {
+                  "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
+                  "X-RapidAPI-Key":
+                    "1917ad3211msh4712239feeda776p1e22c8jsndc955214cb00",
+                },
+              }
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                this.shoes = data.results;
+              });
+          },
+          upcomingSneaks() {
+            this.profile = true
+            fetch(
+                "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100&releaseDate=gte:2022-06-01",
               {
                 method: "GET",
                 headers: {

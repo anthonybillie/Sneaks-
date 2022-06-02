@@ -57,8 +57,11 @@ def register(request):
 
 
 def profile(request):
-
-    return render(request, 'sneakers_app/profile.html')
+    person = User.objects.all()
+    context = {
+        'person': person
+    }
+    return render(request, 'sneakers_app/profile.html', context)
 
 
 # # logout function
