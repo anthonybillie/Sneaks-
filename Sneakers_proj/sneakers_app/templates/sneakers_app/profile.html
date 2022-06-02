@@ -107,6 +107,16 @@
                     >
                   </a>
                 </li>
+                <li>
+                  <a v-on:click="upcomingSneaks" href="#" class="nav-link px-0 align-middle">
+                    <i class="fs-4 bi-people"></i>
+                    <span
+                      class="ms-1 d-sm-inline text-white display-6"
+                      style="font-family: 'Koulen', cursive"
+                      >Upcoming Sneaks</span
+                    >
+                  </a>
+                  </li>
 
                 <li>
                   <a href="#" class="nav-link px-0 align-middle">
@@ -243,9 +253,9 @@
                               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
                                 class="rounded-circle img-fluid" style="width: 100px;" />
                             </div>
-                            <h4 class="mb-2">{{request.first_name}}</h4>
-                            <p class="text-muted mb-4">@Programmer <span class="mx-2">|</span> <a
-                                href="#!">mdbootstrap.com</a></p>
+                            <h4 class="mb-2">{{user.first_name}} {{user.last_name}}</h4>
+                           
+                            <p class="text-muted mb-4">Username: <span class="mx-2">|</span> {{user.username}}</p>
                             <div class="mb-4 pb-2">
                               <button type="button" class="btn btn-outline-primary btn-floating">
                                 <i class="fab fa-facebook-f fa-lg"></i>
