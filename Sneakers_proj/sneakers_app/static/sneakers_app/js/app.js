@@ -13,7 +13,7 @@ var vm =   new Vue({
           homeSneaks() {
             this.profile = true
             fetch(
-                "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=20&page=2",
+                "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=20&page=1",
               {
                 method: "GET",
                 headers: {
