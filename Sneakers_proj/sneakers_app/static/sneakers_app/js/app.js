@@ -1,5 +1,5 @@
 
-var vm =   new Vue({
+  new Vue({
         el: "#app",
         delimiters: ["[[", "]]"],
         data: {
@@ -7,7 +7,8 @@ var vm =   new Vue({
           header: "Find My Sneaks",
           search: "",
           brands: "",
-          profile: true,    
+          profile: true,
+          next: '2',    
         },
         methods: {
           homeSneaks() {
@@ -66,6 +67,26 @@ var vm =   new Vue({
               })
               .catch((err) => console.error(err));
           }, //END OF BRAND SNEAKS
+          // NEXT PAGE 
+          nextPage(next){
+            this.profile=true
+            fetch(
+                `https://the-sneaker-database.p.rapidapi.com/sneakers?limit=20&page=${next}`,
+              {
+                method: "GET",
+                headers: {
+                  "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
+                  "X-RapidAPI-Key":
+                    "1917ad3211msh4712239feeda776p1e22c8jsndc955214cb00",
+                },
+              }
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                this.shoes = data.results;
+              });
+          },
+  // search sneaks
           searchSneaks(search) {
             this.profile = true
             fetch(
@@ -82,6 +103,7 @@ var vm =   new Vue({
               .then((response) => response.json())
               .then((data) => {
                 this.shoes = data.results;
+                this.search='';
               })
               .catch((err) => console.error(err));
           },
