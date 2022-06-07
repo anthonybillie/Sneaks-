@@ -7,12 +7,13 @@
           header: "Find My Sneaks",
           search: "",
           brands: "",
-          profile: true,
-          next: '2',    
+          profile: 1,
+          next:1,
+          previous:'',    
         },
         methods: {
           homeSneaks() {
-            this.profile = true
+            this.profile = 1
             fetch(
                 "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=20&page=1",
               {
@@ -30,7 +31,7 @@
               });
           },
           upcomingSneaks() {
-            this.profile = true
+            this.profile = 1
             fetch(
                 "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100&releaseDate=gte:2022-06-01",
               {
@@ -48,7 +49,7 @@
               });
           },
           brandSneaks(brand) {
-            this.profile = true
+            this.profile = 1
             fetch(
               `https://the-sneaker-database.p.rapidapi.com/search?limit=100&query=${brand}`,
               {
@@ -69,7 +70,8 @@
           }, //END OF BRAND SNEAKS
           // NEXT PAGE 
           nextPage(next){
-            this.profile=true
+            this.profile= 1
+            this.next= next +=1
             fetch(
                 `https://the-sneaker-database.p.rapidapi.com/sneakers?limit=20&page=${next}`,
               {
@@ -86,9 +88,29 @@
                 this.shoes = data.results;
               });
           },
+          // previous page
+          previousPage(previous){
+            this.profile= 1
+            this.previous= this.next -=1
+            fetch(
+                `https://the-sneaker-database.p.rapidapi.com/sneakers?limit=20&page=${previous}`,
+              {
+                method: "GET",
+                headers: {
+                  "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com",
+                  "X-RapidAPI-Key":
+                    "1917ad3211msh4712239feeda776p1e22c8jsndc955214cb00",
+                },
+              }
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                this.shoes = data.results;
+              });
+          },
   // search sneaks
           searchSneaks(search) {
-            this.profile = true
+            this.profile = 1
             fetch(
               `https://the-sneaker-database.p.rapidapi.com/search?limit=50&query=${search}`,
               {
@@ -110,7 +132,7 @@
           //END OF search
 
           allBrands() {
-            this.profile = true
+            this.profile = 1
             fetch("https://the-sneaker-database.p.rapidapi.com/brands", {
               method: "GET",
               headers: {
@@ -128,11 +150,11 @@
             // END OF ALL BRANDS
           },
           profileSwitch(){
-            console.log('profile switch', this.profile)
-            this.profile = false
-            console.log('profile switch', this.profile)
+            this.profile = 3
           },
-          
+          favProfile(){
+            this.profile = 2
+          }
         },
         created: function () {
            this.homeSneaks();

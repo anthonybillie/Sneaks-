@@ -98,7 +98,7 @@
                 </li>
 
                 <li>
-                  <a href="#" class="nav-link px-0 align-middle">
+                  <a v-on:click="favProfile" href="#" class="nav-link px-0 align-middle">
                     <i class="fs-4 bi-people"></i>
                     <span
                       class="ms-1 d-sm-inline text-white display-6"
@@ -201,25 +201,28 @@
               </div>
             </nav>
        
-            <section v-if="profile"  style="margin-top: 100px">
+            <section v-if="profile==1"  style="margin-top: 100px">
               <!-- SHOE DISPLAY -->
               
               <div
                 v-for="shoe in shoes"
                 class="card d-inline-block"
-                style="width: 18rem"
+                style="width: 18rem;"
               >
                 <img
                   v-if="shoe.image.thumbnail"
                   :src="[[shoe.image.thumbnail]]"
                   class="card-img-top"
                   :alt="[[shoe.silhouette]]"
+                  style="height: 286px;"
+                  
                 />
                 <img
                   v-else
                   src="{% static 'sneakers_app/images/INA.jpeg' %}"
                   class="card-img-top"
                   alt="image not available"
+                  style="height: 286px;"
                 />
 
                 <div class="card-body">
@@ -236,10 +239,20 @@
                 </div>
               </div>
 
+
+              <nav aria-label="Page navigation" class="mt-5">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item"><a v-on:click="homeSneaks" class="page-link" href="#">Home</a></li>
+                  <li class="page-item"><a v-on:click="previousPage(previous)" class="page-link" href="#">Previous</a></li>
+                  <li class="page-item"><a v-on:click="nextPage(next)" class="page-link" href="#">Next</a></li>
+                </ul>
+              </nav>
               </section>
           
 
-
+              <section  v-else-if="profile==2"  style="margin-top: 100px">
+                FAVORITES
+              </section>
            
               <section v-else style="margin-top: 100px">
                 <section class="vh-50" style="background-color: #eee;">
