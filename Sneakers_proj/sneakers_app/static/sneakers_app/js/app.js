@@ -9,7 +9,8 @@
           brands: "",
           profile: 1,
           next:1,
-          previous:'',    
+          previous:'',  
+          favorite:[], 
         },
         methods: {
           homeSneaks() {
@@ -33,7 +34,7 @@
           upcomingSneaks() {
             this.profile = 1
             fetch(
-                "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100&releaseDate=gte:2022-06-01",
+                "https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100&releaseDate=gte:2022-06-07&sort=releaseDate:asc",
               {
                 method: "GET",
                 headers: {
@@ -154,7 +155,13 @@
           },
           favProfile(){
             this.profile = 2
-          }
+          },
+          // favorites page 
+        favSelection(shoe){
+          this.favorite.push(shoe)
+          console.log(this.favorite)
+          
+        },
         },
         created: function () {
            this.homeSneaks();

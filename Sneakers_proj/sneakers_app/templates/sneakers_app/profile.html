@@ -214,7 +214,7 @@
                   :src="[[shoe.image.thumbnail]]"
                   class="card-img-top"
                   :alt="[[shoe.silhouette]]"
-                  style="height: 286px;"
+                  
                   
                 />
                 <img
@@ -222,7 +222,7 @@
                   src="{% static 'sneakers_app/images/INA.jpeg' %}"
                   class="card-img-top"
                   alt="image not available"
-                  style="height: 286px;"
+                
                 />
 
                 <div class="card-body">
@@ -235,7 +235,7 @@
                   ><br />
                   <a :href="[[shoe.links.goat]]" target="_blank">GOAT</a>
                   <br>
-                  <a href=""><i class="fa-solid fa-heart text"  style="color: red;"></i> Add Favorite</a>
+                  <a v-on:click="favSelection(shoe)" href="javascript:void(0)"><i class="fa-solid fa-heart text"  style="color: red;"></i> Add Favorite</a>
                 </div>
               </div>
 
@@ -251,7 +251,40 @@
           
 
               <section  v-else-if="profile==2"  style="margin-top: 100px">
-                FAVORITES
+                <div
+                v-for="fav in favorite"
+                class="card d-inline-block"
+                style="width: 18rem;"
+              >
+                <img
+                  v-if="fav.image.thumbnail"
+                  :src="[[fav.image.thumbnail]]"
+                  class="card-img-top"
+                  :alt="[[fav.silhouette]]"
+                  
+                  
+                />
+                <img
+                  v-else
+                  src="{% static 'sneakers_app/images/INA.jpeg' %}"
+                  class="card-img-top"
+                  alt="image not available"
+                
+                />
+
+                <div class="card-body">
+                  <h5 class="card-title">[[fav.name]]</h5>
+                  <p class="card-text">[[fav.brand]]</p>
+                  <p class="card-text">Release Date: [[fav.releaseDate]]</p>
+                  <p class="card-text">Retail Price: $[[fav.retailPrice]]</p>
+                  <a :href="[[fav.links.flightClub]]" target="_blank"
+                    >Flight Club</a
+                  ><br />
+                  <a :href="[[fav.links.goat]]" target="_blank">GOAT</a>
+                  <br>
+                  <a v-on:click="favSelection(shoe)" href="javascript:void(0)"><i class="fa-solid fa-heart text"  style="color: red;"></i> Add Favorite</a>
+                </div>
+              </div>
               </section>
            
               <section v-else style="margin-top: 100px">
