@@ -23,6 +23,7 @@
     />
     <!-- Link to JS File -->
     <script defer src="{% static 'sneakers_app/js/app.js' %}"></script>
+    
     <!-- favicon -->
     <link
       rel="icon"
@@ -32,12 +33,15 @@
     <!-- VUE -->
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- AXIOS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/4696bc222d.js" crossorigin="anonymous"></script>
     <title>Sneaks</title>
   </head>
   <body>
     <div id="app">
+      {% csrf_token %}
       <div class="container-fluid">
         <div class="row flex-nowrap">
           <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
@@ -235,7 +239,7 @@
                   ><br />
                   <a :href="[[shoe.links.goat]]" target="_blank">GOAT</a>
                   <br>
-                  <a v-on:click="favSelection(shoe)" href="javascript:void(0)"><i class="fa-solid fa-heart text"  style="color: red;"></i> Add Favorite</a>
+                  <a v-on:click="testPostMethod(shoe)" href="javascript:void(0)"><i class="fa-solid fa-heart text"  style="color: red;"></i> Add Favorite</a>
                 </div>
               </div>
 
@@ -256,6 +260,7 @@
                 class="card d-inline-block"
                 style="width: 18rem;"
               >
+
                 <img
                   v-if="fav.image.thumbnail"
                   :src="[[fav.image.thumbnail]]"
@@ -269,7 +274,6 @@
                   src="{% static 'sneakers_app/images/INA.jpeg' %}"
                   class="card-img-top"
                   alt="image not available"
-                
                 />
 
                 <div class="card-body">
@@ -277,12 +281,12 @@
                   <p class="card-text">[[fav.brand]]</p>
                   <p class="card-text">Release Date: [[fav.releaseDate]]</p>
                   <p class="card-text">Retail Price: $[[fav.retailPrice]]</p>
-                  <a :href="[[fav.links.flightClub]]" target="_blank"
+                  <a :href="[[fav.flightClub]]" target="_blank"
                     >Flight Club</a
                   ><br />
-                  <a :href="[[fav.links.goat]]" target="_blank">GOAT</a>
+                  <a :href="[[fav.goat]]" target="_blank">GOAT</a>
                   <br>
-                  <a v-on:click="favSelection(shoe)" href="javascript:void(0)"><i class="fa-solid fa-heart text"  style="color: red;"></i> Add Favorite</a>
+                  <a v-on:click="favSelection(shoe)" href="javascript:void(0)"><i class="fa-solid fa-heart text"  style="color: red;"></i> Remove Favorite</a>
                 </div>
               </div>
               </section>
