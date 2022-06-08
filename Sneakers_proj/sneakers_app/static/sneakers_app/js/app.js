@@ -1,5 +1,7 @@
 
-  new Vue({
+ 
+  
+  let vm = new Vue({
         el: "#app",
         delimiters: ["[[", "]]"],
         data: {
@@ -11,6 +13,7 @@
           next:1,
           previous:'',  
           favorite:[], 
+          csrf_token:""
         },
         methods: {
           homeSneaks() {
@@ -155,17 +158,48 @@
           },
           favProfile(){
             this.profile = 2
+            axios({
+              method:'get',
+              url:'/favorite/'
+            }).then(response=>{
+              console.log('test here ',response.data)
+             this.favorite = response.data
+            })
           },
-          // favorites page 
-        favSelection(shoe){
-          this.favorite.push(shoe)
-          console.log(this.favorite)
-          
-        },
+       
+        testPostMethod(shoe){
+          console.log('shoe',shoe)
+          axios({
+            method:'post',
+            url:'/favorite/',
+            headers: {
+              'X-CSRFToken':this.csrf_token
+            },
+            data: {
+              "user_detail": Request.user,
+              "name": shoe.name,
+              "brand": shoe.brand,
+              "releaseDate": shoe.releaseDate,
+              "retailPrice": shoe.retailPrice,
+              "flightClub": shoe.links.flightClub,
+              "goat": shoe.links.goat,
+              "image":shoe.image.thumbnail
+            }
+          }).then(response=>{
+            console.log('post response',response.data)
+          })
+          .catch(error=>{
+            console.log('post error here', error.response)
+          })
+        }
+       
         },
         created: function () {
            this.homeSneaks();
            this.allBrands();
+        },
+        mounted: function(){
+          this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value
         },
       });
    

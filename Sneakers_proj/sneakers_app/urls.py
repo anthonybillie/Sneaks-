@@ -9,4 +9,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
     path('logout/', views.user_logout, name='logout'),
+    path('favorite/', views.favorite, name='favorite'),
+    path('favorite/<int:id>', views.favorite_detail,
+         name='favorite_page_detail'),
 ]

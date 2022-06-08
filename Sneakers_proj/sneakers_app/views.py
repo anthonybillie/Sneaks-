@@ -1,3 +1,4 @@
+from logging import exception
 from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -9,6 +10,12 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
+from django.http import JsonResponse
+from .serializers import *
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+
 # Create your views here.
 
 
@@ -68,3 +75,41 @@ def profile(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('sneakers_app:user_login'))
+
+
+@api_view(['GET', 'POST'])
+def favorite(request):
+    # get all shoes
+    # serialize them
+    # return json
+    if request.method == 'GET':
+        shoe = favoriteShoe.objects.all()
+        serializer = sneaksSerializer(shoe, many=True)
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+        serializer = sneaksSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def favorite_detail(request, id):
+    try:
+        shoe = favoriteShoe.objects.get(pk=id)
+    except favoriteShoe.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = sneaksSerializer(shoe)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = sneaksSerializer(shoe, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.error, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        shoe.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
