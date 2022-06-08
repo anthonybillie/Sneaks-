@@ -13,7 +13,7 @@
           next:1,
           previous:'',  
           favorite:[], 
-          csrf_token:""
+          csrf_token:"",
         },
         methods: {
           homeSneaks() {
@@ -167,23 +167,22 @@
             })
           },
        
-        testPostMethod(shoe){
+        favShoe(shoe){
           console.log('shoe',shoe)
           axios({
             method:'post',
             url:'/favorite/',
             headers: {
-              'X-CSRFToken':this.csrf_token
+              'X-CSRFToken':this.csrf_token,
             },
             data: {
-              "user_detail": Request.user,
               "name": shoe.name,
               "brand": shoe.brand,
               "releaseDate": shoe.releaseDate,
               "retailPrice": shoe.retailPrice,
               "flightClub": shoe.links.flightClub,
               "goat": shoe.links.goat,
-              "image":shoe.image.thumbnail
+           
             }
           }).then(response=>{
             console.log('post response',response.data)
@@ -191,8 +190,7 @@
           .catch(error=>{
             console.log('post error here', error.response)
           })
-        }
-       
+        },
         },
         created: function () {
            this.homeSneaks();
