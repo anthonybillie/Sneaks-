@@ -9,9 +9,6 @@ from django.utils import timezone
 
 
 class favoriteShoe(models.Model):
-
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='favorites')
     name = models.CharField(max_length=100)
     brand = models.CharField(max_length=100)
     releaseDate = models.DateField()

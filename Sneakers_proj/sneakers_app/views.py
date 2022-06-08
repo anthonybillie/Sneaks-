@@ -79,9 +79,6 @@ def user_logout(request):
 
 @api_view(['GET', 'POST'])
 def favorite(request):
-    # get all shoes
-    # serialize them
-    # return json
     if request.method == 'GET':
         shoe = favoriteShoe.objects.all()
         serializer = sneaksSerializer(shoe, many=True)
