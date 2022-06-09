@@ -180,6 +180,7 @@
               "retailPrice": shoe.retailPrice,
               "flightClub": shoe.links.flightClub,
               "goat": shoe.links.goat,
+              "image":shoe.image.thumbnail
            
             }
           }).then(response=>{
@@ -190,8 +191,25 @@
           })
         },
         delFavShoe(fav){
-          console.log(fav)
-          fav.splice()
+          this.profile = 2
+          axios.delete(`/favorite/${fav.id}`,{
+            headers:{
+              'X-CSRFToken':this.csrf_token
+            }
+          })
+             .then(response => {
+                 console.log();
+             })
+             .catch(function (error) {
+                console.log(error.response)
+             })
+
+        axios({
+          method:'get',
+          url:'/favorite/'
+        }).then(response=>{
+         this.favorite = response.data
+        })
         },
         },
         created: function () {

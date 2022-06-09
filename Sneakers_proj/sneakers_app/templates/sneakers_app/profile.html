@@ -261,9 +261,9 @@
                 style="width: 18rem;"
               >
 
-                <!-- <img
-                  v-if="fav.image.thumbnail"
-                  :src="[[fav.image.thumbnail]]"
+                <img
+                  v-if="fav.image"
+                  :src="[[fav.image]]"
                   class="card-img-top"
                   :alt="[[fav.silhouette]]"
                   
@@ -274,7 +274,7 @@
                   src="{% static 'sneakers_app/images/INA.jpeg' %}"
                   class="card-img-top"
                   alt="image not available"
-                /> -->
+                />
 
                 <div class="card-body">
                   <h5 class="card-title">[[fav.name]]</h5>
@@ -286,7 +286,7 @@
                   ><br />
                   <a :href="[[fav.goat]]" target="_blank">GOAT</a>
                   <br>
-                  <a v-on:click="delFavShoe(fav)" href="javascript:void(0)"><i class="fa-solid fa-heart text"  style="color: red;"></i> Remove Favorite</a>
+                  <a v-on:click="delFavShoe(fav)"href=""><i class="fa-solid fa-heart text"  style="color: red;"></i> Remove Favorite</a>
                 </div>
               </div>
               </section>
@@ -300,7 +300,7 @@
                         <div class="card" style="border-radius: 15px;">
                           <div class="card-body text-center">
                             <div class="mt-3 mb-4">
-                              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                              <img src="{% static 'sneakers_app/images/Sneaks.jpg' %}"
                                 class="rounded-circle img-fluid" style="width: 100px;" />
                             </div>
                             <h4 class="mb-2">{{user.first_name}} {{user.last_name}}</h4>
