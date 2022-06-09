@@ -162,13 +162,11 @@
               method:'get',
               url:'/favorite/'
             }).then(response=>{
-              console.log('test here ',response.data)
              this.favorite = response.data
             })
           },
        
         favShoe(shoe){
-          console.log('shoe',shoe)
           axios({
             method:'post',
             url:'/favorite/',
@@ -185,11 +183,15 @@
            
             }
           }).then(response=>{
-            console.log('post response',response.data)
+            response.data
           })
           .catch(error=>{
-            console.log('post error here', error.response)
+            console.log('Error', error.response)
           })
+        },
+        delFavShoe(fav){
+          console.log(fav)
+          fav.splice()
         },
         },
         created: function () {
