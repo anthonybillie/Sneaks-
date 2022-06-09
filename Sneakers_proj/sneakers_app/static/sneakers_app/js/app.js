@@ -162,13 +162,11 @@
               method:'get',
               url:'/favorite/'
             }).then(response=>{
-              console.log('test here ',response.data)
              this.favorite = response.data
             })
           },
        
         favShoe(shoe){
-          console.log('shoe',shoe)
           axios({
             method:'post',
             url:'/favorite/',
@@ -182,14 +180,36 @@
               "retailPrice": shoe.retailPrice,
               "flightClub": shoe.links.flightClub,
               "goat": shoe.links.goat,
+              "image":shoe.image.thumbnail
            
             }
           }).then(response=>{
-            console.log('post response',response.data)
+            response.data
           })
           .catch(error=>{
-            console.log('post error here', error.response)
+            console.log('Error', error.response)
           })
+        },
+        delFavShoe(fav){
+          this.profile = 2
+          axios.delete(`/favorite/${fav.id}`,{
+            headers:{
+              'X-CSRFToken':this.csrf_token
+            }
+          })
+             .then(response => {
+                 console.log();
+             })
+             .catch(function (error) {
+                console.log(error.response)
+             })
+
+        axios({
+          method:'get',
+          url:'/favorite/'
+        }).then(response=>{
+         this.favorite = response.data
+        })
         },
         },
         created: function () {
