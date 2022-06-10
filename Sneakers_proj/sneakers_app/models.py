@@ -15,7 +15,7 @@ class favoriteShoe(models.Model):
     retailPrice = models.IntegerField()
     flightClub = models.CharField(max_length=300)
     goat = models.CharField(max_length=300)
-    image = models.ImageField(upload_to=None,)
+    # image = models.ImageField(upload_to=None,)
 
     def __str__(self):
         return f'{self.name} {self.brand} {self.releaseDate} {self.retailPrice}'
