@@ -15,4 +15,4 @@ class sneaksSerializer(serializers.ModelSerializer):
     class Meta:
         model = favoriteShoe
         fields = ['id', 'name', 'brand', 'releaseDate',
-                  'retailPrice', 'flightClub', 'goat', 'image']
+                  'retailPrice', 'flightClub', 'goat', ]

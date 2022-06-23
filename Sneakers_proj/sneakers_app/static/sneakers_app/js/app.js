@@ -180,11 +180,10 @@
               "retailPrice": shoe.retailPrice,
               "flightClub": shoe.links.flightClub,
               "goat": shoe.links.goat,
-              "image":shoe.image.thumbnail
-           
+              // "image":shoe.image.thumbnail
             }
           }).then(response=>{
-            response.data
+            console.log('RESPONSE',response.data)
           })
           .catch(error=>{
             console.log('Error', error.response)
@@ -199,17 +198,11 @@
           })
              .then(response => {
                  console.log();
+
              })
              .catch(function (error) {
                 console.log(error.response)
              })
-
-        axios({
-          method:'get',
-          url:'/favorite/'
-        }).then(response=>{
-         this.favorite = response.data
-        })
         },
         },
         created: function () {
