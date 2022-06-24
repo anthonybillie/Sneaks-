@@ -1,1 +1,2 @@
-web: gunicorn Sneakers_proj.wsgi 
+web: gunicorn3 Sneakers_proj.wsgi 
+
