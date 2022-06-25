@@ -1,2 +1,2 @@
-web: gunicorn Sneakers_proj.wsgi --log-file
-release: python3 manage.py migrate
+web: gunicorn Sneakers_proj.wsgi
+
