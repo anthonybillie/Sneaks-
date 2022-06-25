@@ -1,2 +1,2 @@
 web: gunicorn Sneakers_proj.wsgi
-release: python manage.py migrate
+release: python3 manage.py migrate
